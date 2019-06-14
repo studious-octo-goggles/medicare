@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="http://13.90.84.165:4000/seatCss">
+    <title>Seat Map</title>
+    <link rel="icon" href="http://13.90.84.165:4000/logo" type="image/icon type"> 
+    <script>
+          var bed;
+          var n;
+           function setBed(n){
+             bed = n;
+           }
+           function assignBedNo(){
+            $.ajax({
+                dataType:"json",
+                url:'patData/',
+                type:'POST',
+                data: { bedNo:bed} ,
+                success: (data)=>{
+                        console.log(data);
+                        call();
+                        alert("data saved successfully !");
+                       }
+            });
+           }
+           
+    </script>
+  </head>
+  <body>
+   <!-- first section -->
+  <div class="card bg-light text-white" style="padding:10px;"> 
+    <div class="col-sm">
+    <ul class="nav nav-pills nav-justified" style="background-color: #4B0082;overflow: hidden;">
+    <li class="nav-item">
+    <a class="nav-link active" href="#"></a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#"></a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#"></a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="http://13.90.84.165:4000/addPatient">Back to the profile</a>
+    </li>
+    </ul>
+    </div>
+  </div>
+  <br>
+  <h1 style="color: #50026B;font-family: cursive, sans-serif;font-size: 26px;font-weight: bold;"> 
+<center>Select Bed</center></h1><br> <br>
+  <div class="wrapper with-height">
+ <button onclick="setBed(1)"> <div class="box box1">1</div></button>
+ <button onclick="setBed(2)"> <div class="box box2">2</div></button>
+ <button onclick="setBed(3)"> <div class="box">3</div></button>
+ <button onclick="setBed(4)"> <div class="box">4</div></button>
+ <button onclick="setBed(5)"><div class="box">5</div></button>
+ <button onclick="setBed(6)"> <div class="box">6</div></button>
+ <button onclick="setBed(7)"><div class="box">7</div></button>
+ <button onclick="setBed(8)"><div class="box">8</div></button>
+ <button onclick="setBed(9)"> <div class="box">9</div></button>
+ <button onclick="setBed(10)"><div class="box">10</div></button>
+ <button onclick="setBed(11)"><div class="box">11</div></button>
+ <button onclick="setBed(12)"><div class="box">12</div></button>
+ <button onclick="setBed(13)"><div class="box">13</div></button>
+ <button onclick="setBed(14)"> <div class="box">14</div></button>
+ <button onclick="setBed(15)"><div class="box">15</div></button>
+ <button onclick="setBed(16)"><div class="box">16</div></button>
+</div>
+<form name="newForm" action="http://13.90.84.165:4000/addPatient" method="GET">
+  <center>  <button onclick="assignBedNo()" type="submit" class="btn btn-primary">Done</button></center>
+</form>>
+</body>
+</html>

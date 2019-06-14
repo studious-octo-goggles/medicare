@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Discharge</title>
+    <link rel="icon" href="http://localhost:4000/logo" type="image/icon type">
+    <script>
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = dd + '/' + mm + '/' + yyyy;
+   // document.getElementById("test7").innerHTML = document.write(today);
+
+    function idNewSearch(){
+      var id = document.getElementById("idNew").innerText;
+      console.log("111111111111111111");
+      var docId;
+      $.ajax({
+                dataType:"json",
+                url:'patProfile/',
+                type:'POST',
+                data: { id:id} ,
+                success: (data)=>{
+                    console.log(Object.values(data));
+                    console.log('hooowooooo' + data.patient_name);
+                    document.getElementById("test2").innerHTML = data.patient_name;
+                    document.getElementById("test3").innerHTML = data.patient_address;
+                    document.getElementById("test5").innerHTML = data.disease;
+                    document.getElementById("test4").innerHTML = data.patient_mobile;
+                    docId=data.assignDocId;
+                }
+            });
+    }
+    </script>
+  </head>
+  <body>
+   <!-- first section -->
+  <div class="card bg-light text-white" style="padding:10px;"> 
+    <div class="col-sm">
+      <ul class="nav nav-pills nav-justified" style="background-color: #4B0082;overflow: hidden;">
+     <li class="nav-item">
+     <a class="nav-link active" href="http://localhost:4000/adminhome">Add Doctor</a>
+     </li>
+     <li class="nav-item">
+    <a class="nav-link" href="http://localhost:4000/updateDoc">Update Doctor Details</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="http://localhost:4000/addPatient">Add Patient</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="http://localhost:4000/allPatientView">View All Patient</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="http://localhost:4000/discharge">Discharge Patient</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="http://localhost:4000/loginPage">Logout</a>
+  </li>
+</ul>
+    </div>
+  </div>
+  <br>
+  <h1 style="color: #50026B;font-family: cursive, sans-serif;font-size: 26px;font-weight: bold;"> 
+<center>Discharge Patient</center></h1>
+  <br>
+   <div class="container-fluid">
+  <div class="row">
+  
+    <div class="col-sm">
+      <img src="http://localhost:4000/dischargePic" width="1000" height="500">
+    </div>
+    <div class="col-sm">
+      
+
+  <form>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm col-form-label">Patient Id:</label>
+    <div class="col-sm-8">
+      <input type="text" id="idNew" name="idNew" class="form-control">
+    </div>
+  </div>
+  <center><button type="submit" onclick="idNewSearch()" class="btn btn-primary">Search</button></center>         
+</form>
+        <br>  
+        <h4><center>Patient Information</center></h4>
+        <table class="table table-striped table-dark">
+        <tr>
+            <td>Name</td>
+            <td id="test2" contenteditable='true'>  </td>
+         </tr>
+         <tr>
+            <td>Address</td>
+            <td id="test3" contenteditable='true'>  </td>
+         </tr>
+         <tr>
+            <td>Contact</td>
+            <td id="test4" contenteditable='true'>    </td>
+         </tr>
+         <tr>
+            <td>Disease</td>
+            <td id="test5" contenteditable='true'>    </td>
+         </tr>
+         <tr>
+            <td>Doctor Name</td>
+            <td id="test6" contenteditable='true'>    </td>
+         </tr>
+               <tr>
+            <td>Date</td>
+            <td id="test7" contenteditable='true'>    </td>
+         </tr>
+            </table>
+      
+        <center><button type="submit" class="btn btn-primary">Discharge</button></center>
+    </div>
+      
+  </div>
+</div> 
+  </body>
+</html>

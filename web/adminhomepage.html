@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Admin Page</title>
+    <link rel="icon" href="http://13.90.84.165:4000/logo" type="image/icon type"> 
+    <style>.active {background-color: #4CAF50;color: white;}</style>
+  </head>
+  <body>
+    <!-- first section -->
+    <div class="row" float-right> 
+    <div class="col-sm">
+    <ul class="nav nav-pills nav-justified" style="background-color: #4B0082;overflow: hidden;">
+    <li class=""><img src="http://13.90.84.165:4000/medicarePic" width="200" height="35"></li>
+    <li class=""><a class="active" href="http://13.90.84.165:4000/adminhome">Add Doctor</a></li>
+    <li class=""><a class="nav-link" href="http://13.90.84.165:4000/updateDoc">Update Doctor Details</a></li>
+    <li class=""><a class="nav-link" href="http://13.90.84.165:4000/addPatient">Add Patient</a></li>
+    <li class=""><a class="nav-link" href="http://13.90.84.165:4000/allPatientView">View All Patient</a></li>
+    <li class=""><a class="nav-link" href="http://13.90.84.165:4000/discharge">Discharge Patient</a></li>
+    <li class=""><a class="nav-link" href="http://13.90.84.165:4000/loginPage">Logout</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+
+  <div class="container-fluid">
+  <div class="row">
+  <div class="col-sm">
+      <img src="http://13.90.84.165:4000/doctorPic" width="1000" height="500">
+  </div>
+  <div class="col-sm">
+<br><br>
+<form action="http://13.90.84.165:4000/register" enctype="multipart/form-data" method="POST"> 
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm col-form-label">Doctor Id:</label>
+    <div class="col-sm-8">
+      <input type="text" name = "t0" class="form-control">
+    </div>
+  </div>        
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm col-form-label">Username:</label>
+    <div class="col-sm-8">
+      <input type="text" name = "t1" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm col-form-label">Password:</label>
+    <div class="col-sm-8">
+      <input type="password" name = "t2" class="form-control">
+    </div>
+  </div>
+          <div class="form-group row">
+    <label for="inputPassword3" class="col-sm col-form-label">Confirm Password:</label>
+    <div class="col-sm-8">
+      <input type="password" class="form-control">
+    </div>
+  </div>
+          <div class="form-group row">
+    <label for="inputEmail3" class="col-sm col-form-label">Address:</label>
+    <div class="col-sm-8">
+      <input type="text" name = "t3" class="form-control">
+    </div>
+  </div>
+          <div class="form-group row">
+    <label for="inputEmail3" class="col-sm col-form-label">Email Id:</label>
+    <div class="col-sm-8">
+      <input type="email" name = "id" class="form-control">
+    </div>
+  </div>
+          <div class="form-group row">
+    <label for="inputEmail3" class="col-sm col-form-label">Contact:</label>
+    <div class="col-sm-8">
+      <input type="text" name = "t4" class="form-control">
+    </div>
+  </div>
+          <div class="form-group row">
+    <label for="inputEmail3" class="col-sm col-form-label">Specialist:</label>
+    <div class="col-sm-8">
+      <input type="text" name = "s" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm col-form-label">Salary:</label>
+    <div class="col-sm-8">
+      <input type="text" name = "t5" class="form-control">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+    </div>
+  </div>
+</div>  
+  </body>
+</html>

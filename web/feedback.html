@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Symptoms</title>
+    <link rel="icon" href="http://52.179.98.77:4000/logo" type="image/icon type"> 
+    <script>
+        var rate;
+    function noRate(){ rate = 0;}
+    function noRate(){ rate = 1;}
+    function noRate(){ rate = 2;}
+    function noRate(){ rate = 3;}
+    function noRate(){ rate = 4;}
+    function noRate(){ rate = 5;}
+    function saveRate(){
+        var ratePatId=document.getElementById("rateId").innerText;
+        var rateDocId=document.getElementById("rateDocId").innerText;
+        $.ajax({
+                dataType:"json",
+                url:'saveRateData/',
+                type:'POST',
+                data: { ratePatId:ratePatId, rateDocId:rateDocId, rateStar:rate} ,
+                success: (data)=>{
+                        console.log(data);
+                        alert("Details updated successfully !");
+                       }
+            });
+    }
+    </script>
+  </head>
+  <body bgcolor="#afafaf">
+      
+   <!-- first section -->
+  <div class="card bg-light text-white" style="padding:10px;"> 
+    <div class="col-sm">
+      <ul class="nav nav-pills nav-justified" style="background-color: #4B0082; overflow: hidden;">
+
+ <li class="nav-item">
+    <a class="nav-link active" href="http://52.179.98.77:4000/tempPatient">Patient Details</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="http://52.179.98.77:4000/symptoms">Symptoms</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="http://52.179.98.77:4000/prescription">Prescription</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="http://52.179.98.77:4000/medicalHelp">Medical Help</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="http://52.179.98.77:4000/appointment">Appointment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="http://52.179.98.77:4000/loginPage">Logout</a>
+  </li>
+</ul>
+    </div>
+  </div>
+  <br>
+  <h1 style="color: #50026B;font-family: cursive, sans-serif;font-size: 26px;font-weight: bold;"> 
+<center>Symptoms</center></h1>
+  <br>
+   <div class="container-fluid">
+  <div class="row">
+    <div class="col-sm">
+        <form name="newForm" action="http://52.179.98.77:4000/prescription" method="POST">
+          <table class="table table-striped table-dark">
+         <tr>
+            <td>Patient Id</td>
+            <td><input name="rateId" id="rateId" type="text"> </td>
+         </tr> 
+         <tr>
+            <td>Doctor Id</td>
+            <td><input name="rateDocId" id="rateDocId" type="text"> </td>
+         </tr>
+         <tr>
+               <td>success rate</td>
+               <td>
+                <button onclick="noRate()"><img src="http://localhost:4000/noStar" width="100" height="20"></button><br>
+                <button onclick="oneRate()"><img src="http://localhost:4000/oneStar" width="100" height="20"></button><br>
+                <button onclick="twoRate()"><img src="http://localhost:4000/twoStar" width="100" height="20"></button><br>
+                <button onclick="threeRate()"><img src="http://localhost:4000/threeStar" width="100" height="20"></button><br>
+                <button onclick="fourRate()"><img src="http://localhost:4000/fourStar" width="100" height="20"></button><br>
+                <button onclick="fiveRate()"><img src="http://localhost:4000/fiveStar" width="100" height="20"></button>
+             </td>
+         </tr>     
+        </table>
+        <center><button type="submit" onclick="saveRate()" class="btn btn-primary">Save</button></center>
+    </form>
+    </div>    
+  </div>
+  </div>
+  </body>
+</html>

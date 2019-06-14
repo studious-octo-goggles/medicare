@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(()=>{
+            console.log("bakwas");
+            $.ajax({
+                dataType:"json",
+                url:'profile/',
+                type:'GET',
+                success: (data)=>{
+                    console.log(Object.values(data));
+                    console.log('hooowooooo' + data.doc_name);
+                    document.getElementById("test1").innerHTML = data.doc_id;
+                    document.getElementById("test2").innerHTML = data.doc_name;
+                    document.getElementById("test5").innerHTML = data.doc_mobile;
+                    document.getElementById("test6").innerHTML = data.specialist;
+                    document.getElementById("test7").innerHTML = data.salary;
+
+                }
+            });
+        });
+        </script></head>
+<body>
+    <table border="2">
+        <tr>
+            <td>Doctor Id</td>
+            <td>Name</td>
+            <td>Address</td>
+            <td>Email id</td>
+            <td>Contact No.</td>
+            <td>Specialisation</td>
+            <td>Salary</td>
+            <td>    </td>
+        </tr>
+        <tr>
+                <td id="test1">    </td>
+                <td id="test2">    </td>
+                <td id="test3">    </td>
+                <td id="test4">    </td>
+                <td id="test5">    </td>
+                <td id="test6">    </td>
+                <td id="test7">    </td>
+                <td><a href="#">Edit</a></td>
+            </tr>
+            </table></body></html>
+
+
+    </body>
+</html>

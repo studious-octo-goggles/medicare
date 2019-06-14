@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Assigned Patients</title>
+   <link rel="icon" href="http://13.90.84.165:4000/logo" type="image/icon type">
+
+   <script type="text/javascript">
+    var i,n;
+    var n1=0;
+    var OnePatId;
+    var x=[{},{},{}];
+    var y=[{},{},{}];
+      $(document).ready(()=>{
+          console.log("bakwas");
+          $.ajax({
+              dataType:"json",
+              url:'patView/',
+              type:'GET',
+              success: (data)=>{
+                  n=data.length;
+                //  console.log(Object.values(data));
+                  x=Object.values(data);
+                  myfun(x);
+              }
+          });
+        });
+    function myfun(y){
+      console.log('----------wwwwwwwwwwwwwwwwww---.........................---');
+      console.log(y);
+      renderTodoList(y);
+    }
+   function renderTodoList(y){
+            if(!y.length) return;
+            console.log("check.....................");
+            $.ajax({
+              dataType:"json",
+              url:'oneDocId/',
+              type:'GET',
+              success: (data)=>{
+                  OnePatId=data.id;
+                  console.log(OnePatId);
+                  loopFun(y);
+              }
+           });           
+   }
+   function loopFun(y){
+    for(i=0; i<y.length ; i++){
+                      var value = y[i];
+                      if(value.assignDocId==OnePatId){
+                        n1=n1+1;
+                      }
+                   }
+    for(i=0; i<y.length ; i++){
+                      var value = y[i];
+                  //    console.log(OnePatId);
+                      if(value.assignDocId==OnePatId){
+                        addItemOneView(value);
+                      }
+                   }
+   }
+   function addItemOneView(value){
+      var list=document.getElementById('tableBody');
+      console.log('555555555555555');
+      console.log(value);
+      console.log("000000000");
+      console.log(list.id);
+       var item = document.createElement('tr');
+       var th = document.createElement('th');
+       th.innerText = n1;
+       var td1 = document.createElement('td');
+       td1.innerText = value.patient_id;
+       var td2 = document.createElement('td');
+       td2.innerText = value.patient_name;
+       var td3 = document.createElement('td');
+       td3.innerText = value.patient_address;
+       var td4 = document.createElement('td');
+       td4.innerText = value.patient_mobile;
+       var td5 = document.createElement('td');
+       td5.innerText = value.disease;
+       var td6 = document.createElement('td');
+       td6.innerText = value.assignDocId;
+
+      var d1 = new Date(value.entryDate);
+      var dm1=(d1.getUTCMonth()+1);
+      var dd1=(d1.getUTCDate()+1);
+      var dy1=(d1.getUTCFullYear());
+      var entryDate1=dm1+"/"+dd1+"/"+dy1;
+
+       var td7 = document.createElement('td');
+       td7.innerText = entryDate1;
+       var td8 = document.createElement('td');
+       td8.innerText = value.roomType;
+  //  console.log(item.innerText);
+
+    item.appendChild(th);
+    item.appendChild(td1);
+    item.appendChild(td2);
+    item.appendChild(td3);
+    item.appendChild(td4);
+    item.appendChild(td5);
+    item.appendChild(td6);
+    item.appendChild(td7);
+    item.appendChild(td8);
+    list.insertBefore(item,list.childNodes[0]);
+    n1=n1-1;
+   }
+</script>
+
+  </head>
+  <body>
+   <!-- first section -->
+  <div class="card bg-light text-white" style="padding:10px;"> 
+    <div class="col-sm">
+      <ul class="nav nav-pills nav-justified" style="background-color: #4B0082;overflow: hidden;">
+
+  <li class="nav-item">
+    <a class="nav-link active" href="http://13.90.84.165:4000/docProfile">My Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="http://13.90.84.165:4000/docAssignPat">View Assigned Patient</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="http://13.90.84.165:4000/changePassword">Change Password</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="http://13.90.84.165:4000/loginPage">Logout</a>
+  </li>
+</ul>
+    </div>
+  </div>
+  <br>
+  <h1 style="color: #50026B;font-family: cursive, sans-serif;font-size: 26px;font-weight: bold;"> 
+   <center>View Assigned Patients</center></h1>
+   <div class="col-sm">
+      
+        </div>
+           
+        <br><br>
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-sm">
+    <table class="table table-bordered table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Sl no.</th>
+      <th scope="col">Patient Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Contact </th>
+      <th scope="col">Disease</th>
+      <th scope="col">Doctor Id</th>
+      <th scope="col">Date</th>
+      <th scope="col">Room </th>
+    </tr>
+  </thead>
+  <tbody class="tableBody" id="tableBody">
+  </tbody>
+</table>
+    </div>
+  
+    </div>     
+    </div>
+      
+  </body>
+</html>

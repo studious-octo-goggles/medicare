@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Prescriptions</title>
+    <link rel="icon" href="http://13.90.84.165:4000/logo" type="image/icon type">
+    <script type="text/javascript">
+    var n;
+    var x=[{},{},{}];
+    var y=[{},{},{}];
+      $(document).ready(()=>{
+          console.log("bakwas");
+          $.ajax({
+              dataType:"json",
+              url:'prescriptionView/',
+              type:'GET',
+              success: (data)=>{
+                  n=data.length;
+                  console.log(Object.values(data));
+                  x=Object.values(data);
+                  myfun(x);
+              }
+          });
+        });
+    function myfun(y){
+      console.log('----------wwwwwwwwwwwwwwwwww---.........................---');
+      console.log(y);
+      renderTodoList(y);
+    }
+   function renderTodoList(y){
+            if(!y.length) return;
+            for(var i=0; i<y.length ; i++){
+                      var value = y[i];
+                      console.log('444444444444444');
+                      console.log(value);
+                      document.getElementById("disName").innerHTML=value.disease;
+                      addItemTodo(value);
+                   }
+              }
+   function addItemTodo(value){
+      var list=document.getElementById('tableBody');
+      console.log(list.id);
+       var item = document.createElement('tr');
+       var td1 = document.createElement('td');
+       td1.innerText = value.disease;
+       var td2 = document.createElement('td');
+       td2.innerText = value.symptom;
+       var td3 = document.createElement('td');
+       td3.innerText = value.prescription1;
+
+
+    item.appendChild(td1);
+    item.appendChild(td2);
+    item.appendChild(td3);
+    list.insertBefore(item,list.childNodes[0]);
+   }
+</script>
+  </head>
+    <body>
+   <div class="row" float-right> 
+    <div class="col-sm">
+      <ul class="nav nav-pills nav-justified" style="background-color: #4B0082;overflow: hidden;">
+
+  <li class="nav-item">
+        <a class="nav-link" href="http://13.90.84.165:4000/tempPatient">Patient Details</a>
+    </li>
+  <li class="nav-item">
+        <a class="nav-link" href="http://13.90.84.165:4000/symptoms">Symptoms</a>
+    </li>
+  <li class="nav-item">
+        <a class="nav-link" href="http://13.90.84.165:4000/prescription">Prescription</a>
+    </li>
+  <li class="nav-item">
+        <a class="nav-link" href="http://13.90.84.165:4000/medicalHelp">Medical Help</a>
+    </li>
+  <li class="nav-item">
+        <a class="nav-link" href="http://13.90.84.165:4000/appointment">Appointment</a>
+    </li>
+  <li class="nav-item">
+        <a class="nav-link" href="http://13.90.84.165:4000/loginPage">Logout</a>
+    </li>
+</ul>
+    </div>
+  </div>
+  <br>
+  <h1 style="color: #50026B;font-family: cursive, sans-serif;font-size: 26px;font-weight: bold;"> 
+<center>Prescription for <p id="disName"></p></center></h1>          
+<br><br>
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-sm">
+  <table class="table table-bordered table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Disease</th>
+      <th scope="col">Symptoms</th>
+      <th scope="col">Prescription</th>
+    </tr>
+  </thead>
+  <tbody class="tableBody" id="tableBody">
+      
+  </tbody>
+</table>
+    </div>
+</div>     
+</div>
+      
+  </body>
+</html>

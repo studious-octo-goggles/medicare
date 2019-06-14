@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Login Page</title>
+    <link rel="icon" href="http://13.90.84.165:4000/logo" type="image/icon type"> 
+    <script type="text/javascript">
+          var ip="localhost:4000";
+           function adminLog() {
+                        document.getElementById("log1").innerHTML = "Admin Login";
+                        document.getElementById("log2").innerHTML = "Admin Id";
+                        document.newForm.action = "http://13.90.84.165:4000/adminLogin";              
+
+                      }
+           function docLog() {
+              document.getElementById("log1").innerHTML = "Doctor Login";
+              document.getElementById("log2").innerHTML = "Doc Id";
+              document.newForm.action = "http://13.90.84.165:4000/docLogin";              
+
+                      }
+          </script>
+  </head>
+  <body>
+   <!-- first section -->
+  <div class="row" float-right> 
+    <div class="col-sm">
+      <ul class="nav nav-pills nav-justified" style="background-color: #4B0082;overflow: hidden;">
+          <li class=""><img src="http://13.90.84.165:4000/medicarePic" width="200" height="35"></li>
+          <li class="nav-item"> <a class="nav-link" href="#"></a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#"></a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#"></a> </li>
+
+          <li class=""> <a class="nav-link" href="http://13.90.84.165:4000/loginPage">Home</a> </li>
+          <li class=""> <a class="nav-link" href="http://13.90.84.165:4000/about">About</a> </li>
+
+      </ul>
+    </div>
+  </div>
+   <div class="container-fluid">
+   <div class="row">
+   <div class="">
+       <img src="http://13.90.84.165:4000/hosPic" width="1000" height="300">
+   </div>
+   <div class="col-sm">
+       <form name="newForm" action="http://13.90.84.165:4000/adminLogin" method="POST">
+   <div class="form-group">
+        <br><br>
+       <b> <p id="log1"> Admin Login </p></b><br>
+       <label id="log2" for="exampleInputEmail1">Admin Id</label>
+       <input type="text" name="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter id">
+       <small id="emailHelp" class="form-text text-muted"></small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+    </div>
+  </div>
+</div>
+<br><br>
+<div class="container">
+<div class="row">
+    &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <button type="button" onclick="adminLog()">
+          <img src="http://13.90.84.165:4000/adminPic" height="150" width="150" alt="Admin">  </button>
+          &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <button type="button" onclick="docLog()">
+          <img src="http://13.90.84.165:4000/docPic" height="150" width="150" alt="Doctor">   </button>
+          &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <button type="button" onclick="window.location.href = 'http://13.90.84.165:4000/patDetails';">
+          <img src="http://13.90.84.165:4000/patPic5" height="150" width="150" alt="Patient">  </button>
+  </div>
+  </div>  
+  </body>
+</html>
