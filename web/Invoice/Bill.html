@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <title>Invoice</title>
+    <link rel="icon" href="http://13.90.84.165:4000/logo" type="image/icon type"> 
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="http://13.90.84.165:4000/invoiceCSS1" />
+    <link rel="stylesheet" type="text/css" href="http://13.90.84.165:4000/invoiceCSS1" />
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="http://13.90.84.165:4000/invoiceCSS1"></script>
+</head>
+<body>
+<script>
+     function myFunction() {
+         window.print();
+         }
+    
+         $(document).ready(()=>{
+            var money;
+            var paise;
+            var extraCharge;
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today = dd + '/' + mm + '/' + yyyy;
+            var d = new Date(today);
+            var dm=(d.getUTCMonth()+1);
+            var dd=(d.getUTCDate()+1);
+            var dy=(d.getUTCFullYear());
+            var date=dm+"/"+dd+"/"+dy;
+            $.ajax({
+                dataType:"json",
+                url:'patBillData/',
+                type:'POST',
+                success: (data)=>{
+                    console.log(Object.values(data));
+                    document.getElementById("pName1").innerHTML = data.patient_name;
+                    document.getElementById("pName2").innerHTML = data.patient_name;
+                    document.getElementById("pAdd").innerHTML = data.patient_address;
+                    document.getElementById("pId").innerHTML = data.patient_id;
+                    document.getElementById("pDis").innerHTML = data.disease;
+                    document.getElementById("pDoc").innerHTML = data.assignDocId;
+                    var d1 = new Date(data.entryDate);
+                    var dm1=(d1.getUTCMonth()+1);
+                    var dd1=(d1.getUTCDate()+1);
+                    var dy1=(d1.getUTCFullYear());
+                     entryDate1=dm1+"/"+dd1+"/"+dy1;
+                    document.getElementById("pDate").innerHTML = entryDate1;
+                    document.getElementById("pEndDate").innerHTML = date;
+                    duration = ((dy-dy1)*365)+((dd-dd1)*30)+(dm-dm1);
+                    document.getElementById("pDueration").innerHTML = duration;
+                    if(data.roomType=="VIP") money=(duration*800);
+                    if(data.roomType=="General") money=(duration*500);
+                    if(data.roomType=="ICU") money=(duration*1500);
+                    paise=money;
+                    document.getElementById("aCh").innerHTML = money + "/-";
+                    secondAjax();
+                    
+                }
+            });
+            function secondAjax(){
+            $.ajax({
+                dataType:"json",
+                url:'extraInfo/',
+                type:'POST',
+                success: (data)=>{
+                    console.log(paise);
+                    extraCharge= data.ex;
+                    document.getElementById("pEx").innerHTML = data.ex + "/-";
+                    var add = (parseInt(extraCharge)+ parseInt(paise));
+                    console.log(add);
+                    var sub = ((parseInt(extraCharge)+ parseInt(paise))*8)/100;
+                    console.log(sub);
+                    var sub2 = add+ sub;
+                    console.log(sub2);
+                    document.getElementById("pTotal").innerHTML =add;
+                    document.getElementById("sabTotal").innerHTML = sub2;
+
+                }
+             }); 
+            }
+             $.ajax({
+                dataType:"json",
+                url:'deletePat/',
+                type:'POST',
+                success: (data)=>{
+                    console.log("done");
+                }
+             });    
+         
+        });
+</script>
+
+<div class="container">
+
+<div class="page-header">
+    <h1>Invoice  <small>madiCare</small></h1> 
+    <button type="submit" class="btn btn-primary" onclick="myFunction()">Print</button> 
+</div>
+
+<!-- Simple Invoice - START -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center">
+               <i class="fa fa-search-plus pull-left icon"></i>
+                <h2>Invoice: #33221</h2>
+            </div>
+            
+            <hr>
+            <div class="row">
+                <div class="col-xs-12 col-md-3 col-lg-3 pull-left">
+                    <div class="panel panel-default height">
+                        <div class="panel-heading">Billing Details</div>
+                        <div class="panel-body">
+                            <strong id="pName1"></strong><br>
+                            <p id="pAdd"></p>        
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-3 col-lg-3">
+                    <div class="panel panel-default height">
+                        <div class="panel-heading">Payment Information</div>
+                        <div class="panel-body">
+                            <strong>Card Name:</strong> Visa<br>
+                            <strong>Card Number:</strong> ***** 332<br>
+                            <strong>Exp Date:</strong> 09/2020<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-3 col-lg-3 pull-left">
+                    <div class="panel panel-default height">
+                        <div class="panel-heading">Patient Details</div>
+                        <div class="panel-body">
+                             <strong>Patient Id:</strong><p id="pId"></p><br>
+                            <strong>Patient Name:</strong> <p id="pName2"></p><br>
+                            <strong>Disease</strong> <p id="pDis"></p><br>
+                             <strong> Assigned Doctor Id:</strong><p id="pDoc"></p><br>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+             </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="text-center"><strong>Payment summary</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td><strong></strong></td>
+                                    <td class="text-center"><strong>Details</strong></td>
+                                    <td class="text-center"><strong>Charges</strong></td>
+                                    <td class="text-right"><strong>Total</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Start Date</td>
+                                    <td id="pDate" class="text-center"></td>
+                                  <td class="text-center">       </td>
+                                    <td class="text-right">       </td>
+                                </tr>
+                                <tr>
+                                    <td>End Date</td>
+                                    <td id="pEndDate" class="text-center"></td>
+                                      <td class="text-center">      </td>
+                                  
+                                    <td class="text-right">     </td>
+                                </tr>
+                                <tr>
+                                    <td>Duration(In Days)</td>
+                                    <td id="pDueration" class="text-center"></td>
+                                  <td class="text-center">   </td>
+                                    <td class="text-right">    </td>
+                                </tr>
+                                <tr>
+                                    <td>Admission Charges</td>
+                                    <td id="aCh" class="text-center"></td>
+                                   <td  id="aCh" class="text-center"></td>
+                                    <td id="aCh" class="text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td>Extra Charges</td>
+                                    <td id="pEx" class="text-center"></td>
+                                    <td id="pEx" class="text-center"> </td>
+                                    <td id="pEx" class="text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="highrow"></td>
+                                    <td class="highrow"></td>
+                                    <td class="highrow text-center"><strong>Subtotal</strong></td>
+                                    <td  id="pTotal" class="highrow text-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="emptyrow"></td>
+                                    <td class="emptyrow"></td>
+                                    <td class="emptyrow text-center"><strong>GST</strong></td>
+                                    <td class="emptyrow text-right">8%</td>
+                                </tr>
+                                <tr>
+                                    <td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
+                                    <td class="emptyrow"></td>
+                                    <td class="emptyrow text-center"><strong>Total</strong></td>
+                                    <td id="sabTotal" class="emptyrow text-right"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                         
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.height {
+    min-height: 200px;
+}
+
+.icon {
+    font-size: 47px;
+    color: #5CB85C;
+}
+
+.iconbig {
+    font-size: 77px;
+    color: #5CB85C;
+}
+
+.table > tbody > tr > .emptyrow {
+    border-top: none;
+}
+
+.table > thead > tr > .emptyrow {
+    border-bottom: none;
+}
+
+.table > tbody > tr > .highrow {
+    border-top: 3px solid;
+}
+</style>
+
+<!-- Simple Invoice - END -->
+
+</div>
+
+</body>
+</html>

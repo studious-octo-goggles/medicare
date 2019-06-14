@@ -1,0 +1,185 @@
+@charset "utf-8";
+body,input,button{
+    font-family:'Roboto', sans-serif;
+}
+body{
+    background:#edf0f1;
+    padding:80px 0 0 0;
+}
+
+header{
+    width:97.4%;
+    height:9%;
+    position: fixed;
+    padding:15px;
+    top:0;
+    left:2px;
+    right:1px;
+    z-index:5;
+    background:#25b99a;
+    box-shadow:0px 2px 4px rgba(44,62,80,0.15);
+    border-bottom-right-radius:10px;
+    border-bottom-left-radius:10px;
+}
+
+header input{
+    width:100%;
+    height:100%;
+    float:left;
+    color:#fff;
+    font-size: 15px;
+    font-weight: 400;
+    text-indent: 18px;
+    /* padding:0 16px 0 0; */
+    background:rgba(255,255,255,0.2);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 25px;
+    border:0px;
+    box-shadow:none;
+    outline:none;
+
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    -o-appearance:none;
+    appearance:none;
+}
+
+header-input::-webkit-input-placeholder{
+    color:rgba(255,255,255,0.75);
+}
+header-input:-moz-input-placeholder{
+    color:rgba(255,255,255,0.75);
+}
+header-input::-moz-input-placeholder{
+    color:rgba(255,255,255,0.75);
+}
+header-input:-ms-input-placeholder{
+    color:rgba(255,255,255,0.75);
+}
+header button{
+    width:50px;
+    height: 50px;
+    position: absolute;
+    top: 17px;
+    right: 15px;
+    z-index: 2;
+    border-radius:25px;
+    background:#808080;
+    border: 0px;
+    box-shadow:none;
+    outline:none;
+    cursor: pointer;
+
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    -o-appearance:none;
+    appearance:none;
+}
+header img{
+   width:39px;
+    height:39px;
+/*  position: relative;*/
+}
+.container{
+    width: 100%;
+    float: left;
+    padding:15px;
+}
+ul.todo{
+    width: 90%;
+    float: left;
+    right:10px;
+
+}
+ul.todo li{
+    width: 90%;
+    min-height:20px;
+    float: left;
+    font-size: 14px;
+    font-weight:500;
+    color: #444;
+    line-height:22px;
+
+    background:#fff;
+    border-radius:5px;
+    position: relative;
+    box-shadow:0px 1px 2px rgba(44,62,80,0.10);
+    margin: 0 0 10px 0;
+    padding:14px 100px 14px 14px;
+}
+ul.todo li:last-of-type{
+    margin:0;
+}
+ul.todo li .buttons{
+    width:80px;
+    height:30px;
+    position: absolute;
+    top:0;
+    right:10px;
+}
+
+ul.todo li .buttons button{
+    width: 40px;
+    height:40px;
+    float: left;
+    background:none;
+    position: relative;
+    border:0px;
+    box-shadow:none;
+    outline:none;
+    cursor: pointer;
+
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    -o-appearance:none;
+    appearance:none;
+} 
+
+ul.todo li .buttons button:last-of-type::before{
+    content:'';
+    width:1px;
+    height:30px;
+    position: absolute;
+    top:10px;
+    left:0;
+    background:#edf0f1;
+}
+ul.todo li .buttons button img{
+    width:25px;
+    height:25px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin:-11px 0 0 -11px;
+}
+ul.todo#completed:not(:empty){
+    position: relative;
+    padding:60px 0 0 48px;
+    opacity:0.65;
+}
+ul.todo#completed:not(:empty)::before{
+    content:'';
+    width:150px;
+    height:1px;
+    position: absolute;
+    top:30px;
+    left:50%;
+    background:#C0C0C0;
+    margin:0 20px 0 -9px;
+}
+ul.todo#todo:empty:after{
+    content: 'You have nothng to-do...';
+    margin: 15px 0 0 0;
+}
+ul.todo#todo:after{
+    width:100%;
+    text-align:center;
+    font-size: 16px;
+    color: #800000
+}
+
